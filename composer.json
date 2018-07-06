@@ -1,0 +1,20 @@
+{
+    "name": "geekdevel/task",
+    "description": "Todo App in Plain PHP",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Yana Ostrovska",
+            "email": "y.ostrovska@geekdevel.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Core\\": "public/core",
+            "Models\\": "public/models",
+            "Controllers\\": "public/controllers"
+        }
+    }
+}
