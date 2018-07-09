@@ -7,7 +7,7 @@ use Core\Model;
 class TypeModel extends Model
 {
 
-	static function all()
+  static function all()
 	{
 		$res = self::$pdo->query('SELECT id, name FROM types ORDER BY id DESC');
 		return $res->fetchAll(PDO::FETCH_ASSOC);
