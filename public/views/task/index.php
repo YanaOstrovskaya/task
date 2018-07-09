@@ -19,23 +19,26 @@
       </tr>
     </thead>
     <tbody>
+        <?php for($i=0; $i<count($tasks); $i++): ?>
       <tr>
-        <td>1</td>
-        <td>Task 1</td>
-        <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, facilis!</td>
-        <td>uncompleted</td>
-        <td>type 4</td>
-        <td>priority</td>
+        <td><?= ($i+1) ?></td>
+        <td><?= $tasks[$i]['name'] ?></td>
+        <td><?= $tasks[$i]['discription'] ?></td>
+        <td><?= $tasks[$i]['status'] ?></td>
+        <td><?= $tasks[$i]['type'] ?></td>
+        <td><?= $tasks[$i]['priority'] ?></td>
         <th>
-        	<a href="/task/edit/<?= $priorities[$i]['id']?>"><i class="material-icons">&#xe150;</i></a>
-        	<a href="/task/delete/<?= $priorities[$i]['id']?>" style="color:red"><i class="material-icons">&#xe872;</i></a>
+        	<a href="/task/edit/<?= $tasks[$i]['id']?>"><i class="material-icons">&#xe150;</i></a>
+        	<a href="/task/delete/<?= $tasks[$i]['id']?>" style="color:red"><i class="material-icons">&#xe872;</i></a>
         </th>
       </tr>
+      <?php endfor; ?>
     </tbody>
   </table>
  </div>
 </div>
 
 </div>
+
 
 
