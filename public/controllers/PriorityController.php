@@ -17,8 +17,7 @@ class PriorityController extends Controller
 	public function index()//list
 	{
 		$title = 'Create priorities';
-		$m = new PriorityModel();
-		$priorities = $m::all();
+		$priorities = $this->priorityModel::all();
 
 		View::render('priority/index', compact('priorities', 'title'));
 	}
@@ -34,10 +33,10 @@ class PriorityController extends Controller
 		$name = isset($_POST['name'])?strip_tags($_POST['name']):'';
 
 		if (!empty($name)) {
-		    $m = new PriorityModel();
+		    //$m = new PriorityModel();
 		    //$allPriorities = $m::all();
 		    //echo '<pre>'.print_r($allPriorities, true).'</pre>';
-		    $m::add($name);
+		    $this->priorityModel::add($name);
 		    unset($_SESSION['message']);
 		    header('Location: /priority');
 		} else {
@@ -54,8 +53,7 @@ class PriorityController extends Controller
 		if(isset($url_segments[3]))
 		{
 		 $id = $url_segments[3];
-		 $m = new PriorityModel();
-		 $priorities = $m::get($id);
+		 $priorities = $this->priorityModel::get($id);
 		}
 		View::render('priority/edit', compact('priorities', 'title'));
 	}
@@ -68,8 +66,7 @@ class PriorityController extends Controller
 		$id = isset($_POST['id'])?$_POST['id']:'';
 		
 		if($id!=''){
-		$m = new PriorityModel();
-		$m::update($id, $name);
+		$this->priorityModel::update($id, $name);
 		}
 
 		header('Location: /priority');
@@ -83,8 +80,7 @@ class PriorityController extends Controller
 		if(isset($url_segments[3]))
 		{
 		 $id = $url_segments[3];
-		 $m = new PriorityModel();
-		 $m::delete($id);
+		 $this->priorityModel::delete($id);
 
 		 header('Location: /priority');
 		}
