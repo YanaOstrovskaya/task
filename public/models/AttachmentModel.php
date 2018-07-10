@@ -13,6 +13,11 @@ class AttachmentModel extends Model
 		return $res->fetchAll(PDO::FETCH_ASSOC);
 	}
 
+		static function get($id)
+	{
+		$res = self::$pdo->query('SELECT id, path_files FROM files WHERE id='.$id);
+		return $res->fetchAll(PDO::FETCH_ASSOC);
+	}
 		static function add($file, $taskId){
  		$st = self::$pdo->prepare("INSERT INTO files (path_files, task_id) VALUES(:path_files, :task_id)");
 	    $st->bindParam(':path_files', $file, PDO::PARAM_STR);
@@ -23,6 +28,7 @@ class AttachmentModel extends Model
 
 		static function update($file, $id)
 	{
+	
 		self::$pdo->query("UPDATE files SET path_files='$file' WHERE task_id='$id'");
 	}
 
