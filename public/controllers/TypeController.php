@@ -35,9 +35,8 @@ class TypeController extends Controller
 		$name = isset($_POST['name'])?strip_tags($_POST['name']):'';
 
 		if (!empty($name)) {
-
-		    $this->typeModel::add($name);
-		    unset($_SESSION['message']);
+			unset($_SESSION['message']);
+		    $this->typeModel::add($name);  
 		    header('Location: /type');
 		} else {
 			$_SESSION['message'] = 'Please Enter valid data';

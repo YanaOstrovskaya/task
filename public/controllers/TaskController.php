@@ -17,15 +17,45 @@ class TaskController extends Controller
 		//$this->typeModel = new TypeModel();
 	}
 
-	public function index()//list
+	public function index()
 	{
-		//echo __CLASS__.' '.__METHOD__;
 		$title = 'Create tasks';
 		$tasks = $this->taskModel::all();
 
 		View::render('task/index', compact('title', 'tasks'));
 	}
 
+	public function show()
+	{
+
+		$url_segments = explode('/', $_SERVER['REQUEST_URI']);
+
+		if(isset($url_segments[3]))
+		{
+		 $id = $url_segments[3];
+		 $statusValue = $this->taskModel::getStatus();
+		
+		 foreach ($statusValue as $statusArray) {
+		 	$status = $statusArray['Type'];
+		 }
+
+		 preg_match_all('/"[^"]+"|[\w]+/u', $status, $arrayStatus);
+		 $tasks = $this->taskModel::get($id);
+	     }
+
+
+		View::render('task/show', compact('tasks', 'arrayStatus'));
+	}
+
+	public function updateStatus()
+	{
+		$id =  isset($_POST['id'])?$_POST['id']:'';
+		$status = isset($_POST['status'])?$_POST['status']:'';
+
+		$this->taskModel::updateStatus($id, $status);
+		header('Location: /task/show/'.$id);
+
+	}
 
 	public function showForm()
 	{
@@ -47,16 +77,32 @@ class TaskController extends Controller
 		$dir = 'storage/files';
 		$file = isset($_FILES['file']['name'])?$dir.'/'.$_FILES['file']['name']:'';
 
-		$data = array($name, $description, $type, $priority);
-    	$task = $this->taskModel::add($data);
-    	$taskID = $task[0]['id'];
+		$data = array($name, $description, $type, $priority);    	
+    	
 
-    	if($_FILES['file']['error'] == 0)
-    	{
-    		move_uploaded_file($_FILES['file']['tmp_name'], $file);
-    		$this->attachmentModel::add($file, $taskID);
+    	$res = $this->taskModel::unique($name);
+    	var_dump($res);
+    	die;
 
-    	}
+	if(!empty($name) AND !empty($description) AND $_FILES['file']['error'] == 0)
+	{
+  
+
+
+			unset($_SESSION['message']);
+			$task = $this->taskModel::add($data);
+			$taskId = $task[0]['id'];
+			move_uploaded_file($_FILES['file']['tmp_name'], $file);
+    		$this->attachmentModel::add($file, $taskId);
+
+
+
+	}
+	else{
+			$_SESSION['message'] = 'Please Enter valid data';
+			header('Location: /task/showForm');
+	}
+
     	header('Location: /task');
 		
 	}
@@ -113,7 +159,6 @@ class TaskController extends Controller
 		if(isset($url_segments[3]))
 		{
 		 $id = $url_segments[3];
-		 var_dump($id);
 		 $this->taskModel::delete($id);
 
 		 header('Location: /task');

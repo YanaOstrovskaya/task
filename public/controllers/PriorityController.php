@@ -25,6 +25,7 @@ class PriorityController extends Controller
 	public function showForm()
 	{
 		$title = 'Create priority';
+
 		View::render('priority/show-form', compact('title'));
 	}
 
@@ -36,13 +37,14 @@ class PriorityController extends Controller
 		    //$m = new PriorityModel();
 		    //$allPriorities = $m::all();
 		    //echo '<pre>'.print_r($allPriorities, true).'</pre>';
-		    $this->priorityModel::add($name);
 		    unset($_SESSION['message']);
+		    $this->priorityModel::add($name);
 		    header('Location: /priority');
 		} else {
 			$_SESSION['message'] = 'Please Enter valid data';
 			header('Location: /priority/showForm');
 		}
+
 	}
 
 	public function edit()//edit task

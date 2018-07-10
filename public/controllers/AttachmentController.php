@@ -33,8 +33,11 @@ class AttachmentController extends Controller
 		if(isset($url_segments[3]))
 		{
 		 $id = $url_segments[3];
-		 $this->attachmentModel::delete($id);
 
+		  $attachment = $this->attachmentModel::get($id);
+		 $this->attachmentModel::delete($id);
+		 unlink($attachment[0]['path_files']);
+		
 		 header('Location: /attachment');
 		}
 	}
