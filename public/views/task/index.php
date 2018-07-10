@@ -22,8 +22,8 @@
         <?php for($i=0; $i<count($tasks); $i++): ?>
       <tr>
         <td><?= ($i+1) ?></td>
-        <td><?= $tasks[$i]['name'] ?></td>
-        <td><?= $tasks[$i]['discription'] ?></td>
+        <td><a href="/task/show/<?= $tasks[$i]['id']?>"><?= $tasks[$i]['name'] ?></a></td>
+        <td><?php echo substr($tasks[$i]['discription'], 0, 70); ?>...</td>
         <td><?= $tasks[$i]['status'] ?></td>
         <td><?= $tasks[$i]['type'] ?></td>
         <td><?= $tasks[$i]['priority'] ?></td>

@@ -27,7 +27,7 @@
       <div class="col-sm-10">  
           <select id="type" name="type" class="form-control">
             <?php  foreach ($allType as $type): ?>
-            <option value="<?= $type['id']; ?>"><?= $type['name']; ?></option>
+            <option value="<?= $type['id']; ?>"  <?php if ($task['priority'] === $type['name']) { echo ' selected="selected"'; } ?>><?= $type['name']; ?></option>
             <?php endforeach; ?>
           </select>
         </div> 
@@ -38,7 +38,7 @@
       <div class="col-sm-10">  
           <select id="priority" name="priority" class="form-control">
             <?php  foreach ($allPriority as $priority): ?>
-            <option value="<?= $priority['id']; ?>"><?= $priority['name']; ?></option>
+            <option value="<?= $priority['id']; ?>" <?php if ($task['priority'] === $priority['name']) { echo ' selected="selected"'; } ?>><?= $priority['name']; ?></option>
             <?php endforeach; ?>
           </select>
         </div> 
