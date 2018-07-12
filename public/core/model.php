@@ -7,22 +7,16 @@ use PDOException;
 
 class Model
 {
-	public static $pdo;
+    public static $pdo;
 
-	public function __construct(){		
-		//$dsn ='mysql:host='.DBHOST.';dbname='.DBNAME.';charset=utf8';
-		try
-		{
-			self::$pdo = new PDO('mysql:host=127.0.0.1;dbname=task;charset=utf8', 'root', '');
-		}
-		catch (PDOException $exception)
-		{
-			 die('Could not connect '.$exception);
-		}
-		
-	}
-
-
-
-
+    public function __construct()
+    {
+        $config = \Core\Config::get();
+        try {
+            self::$pdo = new PDO('mysql:host='.$config['DB_HOST'].';dbname='.
+                                 $config['DB_NAME'].';charset=utf8', $config['DB_USER'], $config['DB_PASSWORD']);
+        } catch (PDOException $exception) {
+            die('Could not connect '.$exception);
+        }
+    }
 }

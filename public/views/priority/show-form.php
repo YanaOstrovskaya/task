@@ -1,15 +1,15 @@
 <div class="container">
-	<div class="row">
-		<h3 style="text-align: center;"><?php echo $title; ?></h3>
+  <div class="row">
+    <h3 style="text-align: center;"><?php echo $title; ?></h3>
 
-  <?php if(isset($_SESSION['message'])): ?>
+  <?php if (isset($_SESSION['message'])): ?>
     <div class="col-sm-6 col-sm-offset-3">
       <div class="alert alert-danger">
       <?php echo $_SESSION['message']; ?>
       </div>
    </div>
   <?php endif; ?>
-  
+
    <form action="/priority/create" method="POST" class="col-sm-6 col-sm-offset-3">
   <div class="form-group">
     <label for="name">Name:</label>
@@ -17,5 +17,5 @@
   </div>
   <button class="btn btn-success" type="submit">Add priority</button>
    </form>
-	</div>
+  </div>
 </div>

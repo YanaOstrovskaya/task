@@ -9,7 +9,9 @@
             "email": "y.ostrovska@geekdevel.com"
         }
     ],
-    "require": {},
+    "require": {
+        "vlucas/phpdotenv": "^2.5"
+    },
     "autoload": {
         "psr-4": {
             "Core\\": "public/core",

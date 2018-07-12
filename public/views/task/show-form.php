@@ -1,15 +1,15 @@
 <div class="container">
-	<div class="row">
-		<h3 style="text-align: center;"><?php echo $title; ?></h3>
+  <div class="row">
+    <h3 style="text-align: center;"><?php echo $title; ?></h3>
 
-  <?php if(isset($_SESSION['message'])): ?>
+  <?php if (isset($_SESSION['message'])): ?>
     <div class="col-sm-6 col-sm-offset-3">
       <div class="alert alert-danger">
       <?php echo $_SESSION['message']; ?>
       </div>
    </div>
   <?php endif; ?>
-  
+
      <form class="form-horizontal col-sm-6 col-sm-offset-3" action="/task/create" method="POST" enctype="multipart/form-data">
     <div class="form-group">
       <label class="control-label col-sm-2" for="name">Name:</label>
@@ -19,45 +19,45 @@
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="description">Description:</label>
-      <div class="col-sm-10">   
-        <textarea class="form-control" rows="5" id="description" placeholder="Enter description" name="description"></textarea>       
+      <div class="col-sm-10">
+        <textarea class="form-control" rows="5" id="description" placeholder="Enter description" name="description"></textarea>
       </div>
     </div>
-    <div class="form-group"> 
+    <div class="form-group">
       <label class="control-label col-sm-2" for="type">Type:</label>
-      <div class="col-sm-10">  
+      <div class="col-sm-10">
           <select id="type" name="type" class="form-control">
             <?php  foreach ($allType as $type): ?>
             <option value="<?= $type['id']; ?>"><?= $type['name']; ?></option>
             <?php endforeach; ?>
           </select>
-        </div> 
+        </div>
       </div>
 
-    <div class="form-group"> 
+    <div class="form-group">
       <label class="control-label col-sm-2" for="priority">Priority:</label>
-      <div class="col-sm-10">  
+      <div class="col-sm-10">
           <select id="priority" name="priority" class="form-control">
             <?php  foreach ($allPriority as $priority): ?>
             <option value="<?= $priority['id']; ?>"><?= $priority['name']; ?></option>
             <?php endforeach; ?>
           </select>
-        </div> 
+        </div>
       </div>
 
 
   <fieldset class="form-group">
           <label class="control-label col-sm-2" for="file">File:</label>
-      <div class="col-sm-10">  
+      <div class="col-sm-10">
         <input type="file" class="form-control" id="file" name="file">
-        </div> 
+        </div>
   </fieldset>
 
-    <div class="form-group">        
+    <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
         <button type="submit" class="btn btn-success">Submit</button>
       </div>
     </div>
   </form>
-	</div>
+  </div>
 </div>
