@@ -16,7 +16,6 @@ class TaskController extends Controller
     public function index()
     {
         $title = 'Create tasks';
-        var_dump($this->taskModel::all());
         $tasks = $this->taskModel::all();
         View::render('task/index', compact('title', 'tasks'));
     }
